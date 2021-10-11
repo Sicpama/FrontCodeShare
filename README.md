@@ -1,1 +1,1 @@
-# sicpama
+# sicpama project
