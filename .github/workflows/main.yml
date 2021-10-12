@@ -32,7 +32,7 @@ jobs: # Job 설정
           aws s3 cp --region ap-northeast-2 ./build-fe.zip s3://sicpamabucket/sicpama_folder/build-fe.zip
       - name: Deploy # Deploy to EC2
         run: aws deploy create-deployment
-          --sicpama
+          --application-name sicpama
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --sicpama_group
+          --deployment-group-name sicpama_group
           --s3-location bucket=sicpamabucket,key=sicpama_folder/build-fe.zip,bundleType=zip
