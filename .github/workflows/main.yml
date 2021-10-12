@@ -29,7 +29,7 @@ jobs: # Job 설정
           AWS_ACCESS_KEY_ID: ${{ secrets.SECRET_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp --region ap-northeast-2 ./build-fe.zip s3://sicpamabucket/sicpama_folder/build-fe.zip
+          aws s3 cp --region ap-northeast-2a ./build-fe.zip s3://sicpamabucket/sicpama_folder/build-fe.zip
       - name: Deploy # Deploy to EC2
         run: aws deploy create-deployment
           --application-name sicpama
