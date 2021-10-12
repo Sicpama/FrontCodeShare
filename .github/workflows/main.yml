@@ -19,12 +19,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Deploy
-        uses: appleboy/ssh-action@master
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          host: ${{ secrets.REMOTE_IP }}
-          username: ${{ secrets.REMOTE_SSH_ID }}
-          key: ${{ secrets.REMOTE_SSH_KEY }}
-          port: ${{ secrets.REMOTE_SSH_PORT }}
+          aws-access-key-id: ${{ secrets.SECRET_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
           script: |
             cd /var/www/html/sicpama
             git pull
