@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>룰렛업데이트 - 각자이름넣고 모달창 발생까지</title>
+	<link href='https://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+     
+    </style>
+</head>
+<body>
+	<main id="wrap">
+		<div class="roulette_area">
+		<div class="roulette_box">
+		<div class="roulette_center">
+		<a href="javascript:;" class="btn_start"><img src="/roullateMain/start.png" width="90" height="70" center="center" alt="버튼"></a>
+		<img src="/roullateMain/룰렛.png.png" class="roll_bg" alt="룰렛이미지">
+		</div>
+		</div>
+		</div>
+		</main>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+   var _btnStart;
+var _roll_bg;
+var _items;
+var _mTime;
+function init()
+{
+create();
+addEvent();
+}
+
+function create()
+{
+_btnStart = $( ".btn_start" );
+_roll_bg = $( ".roll_bg" );
+_items = [ "서인턴님", "이수행님", "이조장님", "강낙타님", "세상에님", "빵킴님"];
+_mTime = 1;
+}
+
+function addEvent()
+{
+_btnStart.on( "click", btnStartClick );
+}
+
+function btnStartClick( $e )
+{
+spinMotion();
+}
+
+var _count = 0;
+//움직이는 모션
+function spinMotion()
+{
+TweenMax.to( _roll_bg, _mTime, { rotation:360, ease:Power0.easeInOut, onComplete:function(){
+TweenMax.set( _roll_bg, { rotation:0 });
+_count ++;
+if( _count > 0 ){
+randomValue();
+return;
+}
+spinMotion();
+}});
+}
+//결과값 추출
+function randomValue(){
+var ran = parseInt( Math.random() * _items.length );
+angleCount( ran );
+}
+//결과값 맞게 움직이는 모션
+function angleCount( $ran )
+{
+TweenMax.killTweensOf( _roll_bg );
+TweenMax.set( _roll_bg, { rotation:0 });
+
+var angle = 360 / _items.length;
+TweenMax.to( _roll_bg, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut, onComplete:function(){
+alert( _items[ $ran ] + " 당첨 되었습니다" );
+}});
+}
+
+$( document ).ready( function(){
+init();
+});
+
+</script>
+</body>
+</html>
