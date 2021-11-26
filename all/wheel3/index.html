@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <title>HTML5 Canvas Winning Wheel</title>
+        <style>
+            .box_container{
+                position: absolute;
+                width: 374px;
+                height: 190.01px;
+                left: -1px;
+                top: 552.98px;
+    
+                background: #FFC107;
+                box-shadow: 0px -7px 18px rgba(0, 0, 0, 0.2);
+                border-radius: 34px;
+            }
+            h3 .dinner{
+                position: absolute;
+                width: 148.45px;
+                height: 21.81px;
+                left: 109.4px;
+                top: 574.13px;
+    
+                font-family: Yeon Sung;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 35px;
+                line-height: 44px;
+                display: flex;
+                align-items: center;
+    
+                color: red;
+    
+            }
+            h3 .shoot{
+                position: absolute;
+                width: 220.41px;
+                height: 37.65px;
+                left: 86.24px;
+                top: 612.5px;
+    
+                font-family: Yeon Sung;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 35px;
+                line-height: 44px;
+                display: flex;
+                align-items: center;
+    
+                color: #FFFFFF;
+    
+                border: 0.6px solid #FFFFFF;
+            }
+            div .pay{
+                position: absolute;
+                width: 119.86px;
+                height: 34.5px;
+                left: 110.27px;
+                top: 120px;
+    
+                background: #FFFFFF;
+                border-radius: 11px;
+            }
+        </style>
+        <link rel="stylesheet" href="main.css" type="text/css" />
+        <script type="text/javascript" src="../../Winwheel.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    </head>
+    <body>
+        <div align="center">
+            <h1>복불복 결제 나만 아니면 돼~</h1>
+          
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td>
+                        <div class="power_controls">
+                            <br />
+                            <br />
+                            <table class="power" cellpadding="10" cellspacing="0">
+                            </table>
+                            <br />
+                            <img id="spin_button" src="spin_off.png" alt="Spin" onClick="startSpin();" />
+                        </div>
+                    </td>
+                    <td width="438" height="582" class="the_wheel" align="center" valign="center">
+                        <canvas id="canvas" width="434" height="434">
+                        </canvas>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="box_container">
+        
+            <h3 class="dinner">오늘 저녁은 </h3>
+            <br>
+            <h3 class="shoot"></h3>
+            <button class="pay">결제하기</button>
+        </div>
+        <script>
+            let theWheel = new Winwheel({
+                'numSegments'  : 3,     
+                'outerRadius'  : 212,   
+                'textFontSize' : 28,    
+                'segments'     :        
+                [
+                   {'fillStyle' : '#eae56f', 'text' : '1번자리 '},
+                   {'fillStyle' : '#89f26e', 'text' : '2번자리 '},
+                   {'fillStyle' : '#7de6ef', 'text' : '3번자리 '},
+                   
+              
+                ],
+                'animation' :           
+                {
+                    'type'     : 'spinToStop',
+                    'duration' : 5,     
+                    'spins'    : 8,     
+                    'callbackFinished' : alertPrize
+                }
+            });
+            let wheelPower    = 0;
+            let wheelSpinning = false;
+
+
+           function startSpin()
+            {
+               
+                if (wheelSpinning == false) {
+                   
+                    if (wheelPower == 1) {
+                        theWheel.animation.spins = 3;
+                    } else if (wheelPower == 2) {
+                        theWheel.animation.spins = 8;
+                    } else if (wheelPower == 3) {
+                        theWheel.animation.spins = 15;
+                    }
+                    theWheel.startAnimation();
+                    wheelSpinning = true;
+                }
+            }
+            //결과 나오면 박스에 텍스트 넣기
+
+        function alertPrize(indicatedSegment)
+            {
+                const result = document.querySelector('.shoot');
+                result.innerHTML = `<p>${indicatedSegment.text}</p>`;
+                // alert("오늘 결제할 사람은? " + indicatedSegment.text);
+            }
+        </script>
+    </body>
+</html>
