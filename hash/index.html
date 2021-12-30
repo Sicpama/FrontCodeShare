@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>해시태그생성하기</title>
+    <link rel="stylesheet" href="/hash/hash.css">
+    <script type="module" src="/hash/hash.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div style="margin-top:50px; margin-left:40px;" class="content">
+        <div style="display: flex;">
+           <h1 class="titleHeader">👏요청사항<h1/> 
+        </div>
+        <p>클릭클릭🖱</p>
+        <br><br>
+        <ul class="basic">
+            <li class="one" onclick="Add()" value="1">#육수추가</li>
+            <li class="two" onclick="Add2()">#면추가</li>
+            <li class="three" onclick="Add3()">#양파초절임추가</li>
+            <li class="four" onclick="Add4()">#비트(무절임)추가</li>
+            <li class="five" onclick="Add5()">#고수추가</li>
+            <li class="six" onclick="Add6()">#땡초추가</li>
+            <li class="seven" onclick="Add7()">#피쉬소스추가</li>
+        </ul>
+    </div>
+      
+      <script>
+         let tag = {};
+             let counter = 0;
+                    
+             function addTag(value) {
+                tag[counter] = value; 
+                counter++; 
+                }
+                    let count = 1;
+
+                    function Add(e){
+                        if( $("#tag-list").append("<li class='tag-item'>" + "#육수추가" + 
+                        "<span class='del-btn' idx='"+ counter + "'>x</span></li>")){
+
+                        }else{
+                            alert("추가 실패");
+                        }
+                    // $("#tag-list").append("<li class='tag-item'>" + "#육수추가" + 
+                    //     "<span class='del-btn' idx='"+ counter + "'>x</span></li>");
+                       }
+                       function Add2(e){
+                    $("#tag-list").append("<li class='tag-item'>" + "#면추가" + 
+                        "<span class='del-btn' idx='"+ counter + "'>x</span></li>");
+                       }
+                       function Add3(e){
+                    $("#tag-list").append("<li class='tag-item'>" + "#양파초절임추가" + 
+                        "<span class='del-btn' idx='"+ counter + "'>x</span></li>");
+                       }
+                       function Add4(e){
+                    $("#tag-list").append("<li class='tag-item'>" + "#비트(무절임)추가" + 
+                        "<span class='del-btn' idx='"+ counter + "'>x</span></li>");
+                       }
+                       function Add5(e){
+                    $("#tag-list").append("<li class='tag-item'>" + "#고수추가" + 
+                        "<span class='del-btn' idx='"+ counter + "'>x</span></li>");
+                       }
+                       function Add6(e){
+                    $("#tag-list").append("<li class='tag-item'>" + "#땡초추가" + 
+                        "<span class='del-btn' idx='"+ counter + "'>x</span></li>");
+                       }
+                       function Add7(e){
+                    $("#tag-list").append("<li class='tag-item'>" + "#피쉬소스(느억맘)추가" + 
+                        "<span class='del-btn' idx='"+ counter + "'>x</span></li>");
+                       }
+            
+      </script>
+      <div class="boxii">
+          <h1>내가 선택한 추천 요청사항</h1>
+          <p>+직접입력</p>
+          <input type="text" id="tag" size="25" placeholder="예) 앞치마" />
+          <ul id="tag-list">
+        </ul>
+        </div>
+   
+</body>
+</html>
